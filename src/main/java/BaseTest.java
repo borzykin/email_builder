@@ -16,10 +16,15 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     private WebDriver driver;
+    private String os = System.getProperty("os.name").toLowerCase();
 
     @Before
     public void setUp() {
-        System.setProperty("webdriver.gecko.driver","src\\main\\resources\\geckodriver.exe");
+        if (os.contains("win")) {
+            System.setProperty("webdriver.gecko.driver","src\\main\\resources\\geckodriver.exe");
+        } else if (os.contains("nix") || os.contains("nux")) {
+            System.setProperty("webdriver.gecko.driver","src/main/resources/geckodriver");
+        }
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
