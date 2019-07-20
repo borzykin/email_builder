@@ -21,7 +21,7 @@ public class BaseTest {
     @Before
     public void setUp() {
         if (os.contains("win")) {
-            System.setProperty("webdriver.gecko.driver","src\\main\\resources\\geckodriver.exe");
+            System.setProperty("webdriver.gecko.driver","src/main/resources/geckodriver.exe");
         } else if (os.contains("nix") || os.contains("nux")) {
             System.setProperty("webdriver.gecko.driver","src/main/resources/geckodriver");
         }
