@@ -1,11 +1,9 @@
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,16 +14,15 @@ import java.util.concurrent.TimeUnit;
 public class BaseTest {
 
     private WebDriver driver;
-    private String os = System.getProperty("os.name").toLowerCase();
+
+    @BeforeClass
+    public static void setupClass() {
+        WebDriverManager.chromedriver().setup();
+    }
 
     @Before
     public void setUp() {
-        if (os.contains("win")) {
-            System.setProperty("webdriver.gecko.driver","src/main/resources/geckodriver.exe");
-        } else if (os.contains("nix") || os.contains("nux")) {
-            System.setProperty("webdriver.gecko.driver","src/main/resources/geckodriver");
-        }
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
@@ -44,6 +41,5 @@ public class BaseTest {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("resultStats")));
         String actualTitle = driver.getTitle();
         Assert.assertThat(actualTitle, containsString("memes"));
-
     }
 }
