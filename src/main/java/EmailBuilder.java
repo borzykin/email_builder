@@ -1,33 +1,13 @@
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class EmailBuilder {
 
     public static void main(String[] args) throws InterruptedException {
-        WebDriver driver;
-        StringBuilder email = new StringBuilder();
-
-        email = emailBuilder();
-
-        WebDriverManager.chromedriver().setup();
-
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
-        driver.get("https://meyerweb.com/eric/tools/dencoder/");
-        Thread.sleep(1000);
-        driver.findElement(By.id("dencoder")).sendKeys(email);
-        Thread.sleep(1000);
-
+        StringBuilder email = emailBuilder();
+        WebInterface webInterface = new WebInterface();
+        webInterface.sendEmail(email);
     }
-
 
     private static StringBuilder emailBuilder() {
         double totalWorked = getHoursWorked();
