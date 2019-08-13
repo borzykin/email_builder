@@ -73,21 +73,20 @@ public class EmailBuilder {
         ArrayList<String> typesOfTesting = new ArrayList<String>();
 
         System.out.println("Select what kind on testing \nenter 1 for Functional\nenter 2 for Regression\nor 0 to exit...");
-        while (true) {
-            String input = reader.nextLine();
-            if (input.equals("0")) {
+        switch (Integer.parseInt(reader.nextLine())) {
+            case 0:
                 break;
-            }
-            if (input.equals("1")) {
-                if (!typesOfTesting.contains("- Функциональное тестирование приложения " + name)) {
-                    typesOfTesting.add("- Функциональное тестирование приложения " + name);
-                }
-            }
-            if (input.equals("2")) {
-                if (!typesOfTesting.contains("- Регрессионное тестирование приложения " + name)) {
-                    typesOfTesting.add("- Регрессионное тестирование приложения " + name);
-                }
-            }
+            case 1:
+                String functionalProjectItem = "- Функциональное тестирование приложения "+name;
+                typesOfTesting.add(!typesOfTesting.contains(functionalProjectItem)? "" : functionalProjectItem);
+                break;
+            case 2:
+                String regressionProjectItem = "- Регрессионное тестирование приложения "+name;
+                typesOfTesting.add(!typesOfTesting.contains(regressionProjectItem)? "" : regressionProjectItem);
+                break;
+                default:
+                    System.out.println("Invalid code. Please choose between 0,1,2");
+                    break;
         }
 
         StringBuilder typesOfTestingBlock = new StringBuilder();
