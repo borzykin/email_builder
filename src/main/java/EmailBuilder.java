@@ -17,6 +17,7 @@ public class EmailBuilder {
         ArrayList<Double> projectTimes = new ArrayList<>();
 
         for (int i = 0; i < totalProjects; i++) {
+            System.out.println("Enter data about project " + (i + 1) + "...");
             project.add(getProjectName());
             projectTimes.add(getProjectTime());
         }
@@ -37,7 +38,6 @@ public class EmailBuilder {
 
     }
 
-
     private static double getHoursWorked() {
         System.out.print("Enter total hours worked: ");
         Scanner reader = new Scanner(System.in);
@@ -51,13 +51,13 @@ public class EmailBuilder {
     }
 
     private static String getProjectName() {
-        System.out.println("Enter project name");
+        System.out.print("Enter project name: ");
         Scanner reader = new Scanner(System.in);
         return reader.nextLine();
     }
 
     private static Double getProjectTime() {
-        System.out.println("Enter project time");
+        System.out.print("Enter project time: ");
         Scanner reader = new Scanner(System.in);
         return reader.nextDouble();
     }
@@ -71,9 +71,18 @@ public class EmailBuilder {
         ArrayList<String> bugsClosed = new ArrayList<>();
         ArrayList<String> typesOfTesting = new ArrayList<>();
 
+        // делаю красивости окончаний слов
+        String hoursEnding = "";
+        if (time <= 1) {
+            hoursEnding = " час";
+        } else if (time > 1 && time < 5) {
+            hoursEnding = " часa";
+        } else {
+            hoursEnding = " часов";
+        }
 
         StringBuilder projectHeader = new StringBuilder();
-        projectHeader.append(name).append(" - ").append(time).append(" часa").append("\n");
+        projectHeader.append(name).append(" - ").append(time).append(hoursEnding).append("\n");
 
         System.out.println("Select what kind on testing \n" +
                 "1 for Functional\n" +
@@ -81,7 +90,6 @@ public class EmailBuilder {
                 "3 for By Checklist\n" +
                 "4 for Communication\n" +
                 "5 for Writing test-cases\n" +
-
                 "or 0 to exit...");
 
         int typeInput = reader.nextInt();
@@ -181,7 +189,6 @@ public class EmailBuilder {
             bugsClosed.add(input);
         }
 
-
         StringBuilder devicesBlock = new StringBuilder();
         devicesBlock.append("Девайсы:");
         i = 0;
@@ -190,7 +197,6 @@ public class EmailBuilder {
             i++;
         }
         devicesBlock.append("\n");
-
 
         StringBuilder buildsBlock = new StringBuilder();
         buildsBlock.append("Билды: \n");
