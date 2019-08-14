@@ -72,21 +72,33 @@ public class EmailBuilder {
         ArrayList<String> bugsClosed = new ArrayList<String>();
         ArrayList<String> typesOfTesting = new ArrayList<String>();
 
+
+        StringBuilder projectHeader = new StringBuilder();
+        projectHeader.append(name).append(" - ").append(time).append(" часa").append("\n");
+
         System.out.println("Select what kind on testing \nenter 1 for Functional\nenter 2 for Regression\nor 0 to exit...");
-        switch (Integer.parseInt(reader.nextLine())) {
-            case 0:
-                break;
-            case 1:
-                String functionalProjectItem = "- Функциональное тестирование приложения "+name;
-                typesOfTesting.add(!typesOfTesting.contains(functionalProjectItem)? "" : functionalProjectItem);
-                break;
-            case 2:
-                String regressionProjectItem = "- Регрессионное тестирование приложения "+name;
-                typesOfTesting.add(!typesOfTesting.contains(regressionProjectItem)? "" : regressionProjectItem);
-                break;
+        int typeInput = reader.nextInt();
+        while (typeInput != 0) {
+            switch (typeInput) {
+                case 1:
+                    String functionalProjectItem = "- Функциональное тестирование приложения " + name;
+                    if (!typesOfTesting.contains(functionalProjectItem)) {
+                        typesOfTesting.add(functionalProjectItem);
+                    }
+                    typeInput = reader.nextInt();
+                    break;
+                case 2:
+                    String regressionProjectItem = "- Регрессионное тестирование приложения " + name;
+                    if (!typesOfTesting.contains(regressionProjectItem)) {
+                        typesOfTesting.add(regressionProjectItem);
+                    }
+                    typeInput = reader.nextInt();
+                    break;
                 default:
                     System.out.println("Invalid code. Please choose between 0,1,2");
+                    typeInput = reader.nextInt();
                     break;
+            }
         }
 
         StringBuilder typesOfTestingBlock = new StringBuilder();
@@ -143,7 +155,7 @@ public class EmailBuilder {
 
 
         StringBuilder devicesBlock = new StringBuilder();
-        devicesBlock.append("Девайсы: \n");
+        devicesBlock.append("Девайсы:");
         i = 0;
         while (i < devices.size()) {
             devicesBlock.append(devices.get(i)).append(" \n");
@@ -163,7 +175,7 @@ public class EmailBuilder {
 
         StringBuilder createdBlock = new StringBuilder();
         if (bugsCreated.size() > 0) {
-            createdBlock.append("Заведено " + bugsCreated.size() + " дефектов" + "\n");
+            createdBlock.append("Заведено " + bugsCreated.size() + " дефектов:" + "\n");
             i = 0;
             while (i < bugsCreated.size()) {
                 createdBlock.append(bugsCreated.get(i)).append(" \n");
@@ -175,7 +187,7 @@ public class EmailBuilder {
         StringBuilder reopenedBlock = new StringBuilder();
         if (bugsReopened.size() > 0) {
             if (bugsCreated.size() > 0) {createdBlock.append("\n");}
-            reopenedBlock.append("Переоткрыто " + bugsReopened.size() + " дефектов" + "\n");
+            reopenedBlock.append("Переоткрыто " + bugsReopened.size() + " дефектов:" + "\n");
             i = 0;
             while (i < bugsReopened.size()) {
                 reopenedBlock.append(bugsReopened.get(i)).append(" \n");
@@ -187,7 +199,7 @@ public class EmailBuilder {
         StringBuilder closedBlock = new StringBuilder();
         if (bugsClosed.size() > 0) {
             if (bugsReopened.size() > 0 || bugsCreated.size() > 0) {reopenedBlock.append("\n");}
-            closedBlock.append("Закрыто " + bugsClosed.size() + " дефектов" + "\n");
+            closedBlock.append("Закрыто " + bugsClosed.size() + " дефектов:" + "\n");
             i = 0;
             while (i < bugsClosed.size()) {
                 closedBlock.append(bugsClosed.get(i)).append(" \n");
@@ -196,7 +208,7 @@ public class EmailBuilder {
             // closedBlock.append("\n");
         }
 
-        return typesOfTestingBlock.append("\n").append(buildsBlock).append(devicesBlock).append(createdBlock)
+        return projectHeader.append("\n").append(typesOfTestingBlock).append("\n").append(buildsBlock).append(devicesBlock).append(createdBlock)
                 .append(reopenedBlock).append(closedBlock);
     }
 
