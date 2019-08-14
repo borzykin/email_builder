@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class EmailBuilder {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         StringBuilder email = emailBuilder();
         WebInterface webInterface = new WebInterface();
         webInterface.sendEmail(email);
@@ -13,8 +13,8 @@ public class EmailBuilder {
         double totalWorked = getHoursWorked();
         int totalProjects = getTotalProjectToday();
 
-        ArrayList<String> project = new ArrayList<String>();
-        ArrayList<Double> projectTimes = new ArrayList<Double>();
+        ArrayList<String> project = new ArrayList<>();
+        ArrayList<Double> projectTimes = new ArrayList<>();
 
         for (int i = 0; i < totalProjects; i++) {
             project.add(getProjectName());
@@ -33,7 +33,6 @@ public class EmailBuilder {
         StringBuilder footer = new StringBuilder();
         footer.append("Задачи планируемые на завтра - нет" + "\n" + "\n" + "Текущие проблемы - нет");
 
-//        System.out.println(header.append(projectsBlock).append(footer));
         return header.append(projectsBlock).append(footer);
 
     }
@@ -65,18 +64,26 @@ public class EmailBuilder {
 
     private static StringBuilder buildProject(String name, double time) {
         Scanner reader = new Scanner(System.in);
-        ArrayList<String> devices = new ArrayList<String>();
-        ArrayList<String> builds = new ArrayList<String>();
-        ArrayList<String> bugsCreated = new ArrayList<String>();
-        ArrayList<String> bugsReopened = new ArrayList<String>();
-        ArrayList<String> bugsClosed = new ArrayList<String>();
-        ArrayList<String> typesOfTesting = new ArrayList<String>();
+        ArrayList<String> devices = new ArrayList<>();
+        ArrayList<String> builds = new ArrayList<>();
+        ArrayList<String> bugsCreated = new ArrayList<>();
+        ArrayList<String> bugsReopened = new ArrayList<>();
+        ArrayList<String> bugsClosed = new ArrayList<>();
+        ArrayList<String> typesOfTesting = new ArrayList<>();
 
 
         StringBuilder projectHeader = new StringBuilder();
         projectHeader.append(name).append(" - ").append(time).append(" часa").append("\n");
 
-        System.out.println("Select what kind on testing \nenter 1 for Functional\nenter 2 for Regression\nor 0 to exit...");
+        System.out.println("Select what kind on testing \n" +
+                "1 for Functional\n" +
+                "2 for Regression\n" +
+                "3 for By Checklist\n" +
+                "4 for Communication\n" +
+                "5 for Writing test-cases\n" +
+
+                "or 0 to exit...");
+
         int typeInput = reader.nextInt();
         while (typeInput != 0) {
             switch (typeInput) {
@@ -91,6 +98,27 @@ public class EmailBuilder {
                     String regressionProjectItem = "- Регрессионное тестирование приложения " + name;
                     if (!typesOfTesting.contains(regressionProjectItem)) {
                         typesOfTesting.add(regressionProjectItem);
+                    }
+                    typeInput = reader.nextInt();
+                    break;
+                case 3:
+                    String byChecklist = "- Тестирование по чек-листу приложения " + name;
+                    if (!typesOfTesting.contains(byChecklist)) {
+                        typesOfTesting.add(byChecklist);
+                    }
+                    typeInput = reader.nextInt();
+                    break;
+                case 4:
+                    String communication = "- Коммуникация с заказчиком";
+                    if (!typesOfTesting.contains(communication)) {
+                        typesOfTesting.add(communication);
+                    }
+                    typeInput = reader.nextInt();
+                    break;
+                case 5:
+                    String testCases = "- Написание тест-кейсов";
+                    if (!typesOfTesting.contains(testCases)) {
+                        typesOfTesting.add(testCases);
                     }
                     typeInput = reader.nextInt();
                     break;
@@ -181,7 +209,6 @@ public class EmailBuilder {
                 createdBlock.append(bugsCreated.get(i)).append(" \n");
                 i++;
             }
-            // createdBlock.append("\n");
         }
 
         StringBuilder reopenedBlock = new StringBuilder();
@@ -193,7 +220,6 @@ public class EmailBuilder {
                 reopenedBlock.append(bugsReopened.get(i)).append(" \n");
                 i++;
             }
-            //reopenedBlock.append("\n");
         }
 
         StringBuilder closedBlock = new StringBuilder();
@@ -205,7 +231,6 @@ public class EmailBuilder {
                 closedBlock.append(bugsClosed.get(i)).append(" \n");
                 i++;
             }
-            // closedBlock.append("\n");
         }
 
         return projectHeader.append("\n").append(typesOfTestingBlock).append("\n").append(buildsBlock).append(devicesBlock).append(createdBlock)
