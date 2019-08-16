@@ -18,11 +18,15 @@ public class DataCollector {
             setDetailedProjectsData(projectNames.get(i), projectTimes.get(i));
         }
 
-        System.out.println(totalWorked);
-        System.out.println(totalProjects);
-        System.out.println(projectNames);
-        System.out.println(projectTimes);
-        System.out.println(projects);
+        //checking how to access elements
+        System.out.println("Это первый?");
+        System.out.println(projects.get(0));
+        System.out.println("Это второй?");
+        System.out.println(projects.get(1));
+        System.out.println("Это третий?");
+        System.out.println(projects.get(2));
+
+
     }
 
     private void setHoursWorked() {
@@ -53,6 +57,8 @@ public class DataCollector {
         // nothing better than creating the list of lists
         Scanner reader = new Scanner(System.in);
         ArrayList<String> typesOfTesting = new ArrayList<>();
+        ArrayList<String> devices = new ArrayList<>();
+        ArrayList<String> builds = new ArrayList<>();
 
         System.out.println("Select what kind on testing \n" +
                 "1 for Functional\n" +
@@ -106,7 +112,32 @@ public class DataCollector {
                     break;
             }
         }
+
+        System.out.println("Enter devices or 0 to exit...");
+        while (true) {
+            String input = reader.nextLine();
+            if (input.equals("0")) {
+                break;
+            }
+            devices.add(input);
+            // idk code adds empty space to list, but we don't need it
+            devices.remove("");
+        }
+
+        System.out.println("Enter builds or 0 to exit...");
+        while (true) {
+            String input = reader.nextLine();
+            if (input.equals("0")) {
+                break;
+            }
+            builds.add(input);
+            // idk code adds empty space to list, but we don't need it
+            builds.remove("");
+        }
+
         projects.add(typesOfTesting);
+        projects.add(devices);
+        projects.add(builds);
     }
 }
 
