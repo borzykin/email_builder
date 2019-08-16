@@ -40,7 +40,7 @@ public class MailBuilder extends Builder{
     }
 
     private int getTotalProjectToday() {
-        System.out.print("Enter how much projects: ");
+        System.out.print("Enter how much projectNames: ");
         Scanner reader = new Scanner(System.in);
         return reader.nextInt();
     }
