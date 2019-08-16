@@ -72,7 +72,7 @@ public class EmailBuilder {
         ArrayList<String> typesOfTesting = new ArrayList<>();
 
         // делаю красивости окончаний слов
-        String hoursEnding = "";
+        String hoursEnding;
         if (time <= 1) {
             hoursEnding = " час";
         } else if (time > 1 && time < 5) {
@@ -100,6 +100,7 @@ public class EmailBuilder {
                     if (!typesOfTesting.contains(functionalProjectItem)) {
                         typesOfTesting.add(functionalProjectItem);
                     }
+//                    typesOfTesting.add(typesOfTesting.contains(functionalProjectItem)? "" : functionalProjectItem);
                     typeInput = reader.nextInt();
                     break;
                 case 2:
