@@ -92,7 +92,9 @@ public class MailBuilder extends Builder{
             switch (typeInput) {
                 case 1:
                     String functionalProjectItem = "- Функциональное тестирование приложения " + name;
-                    typesOfTesting.add(typesOfTesting.contains(functionalProjectItem)? "" : functionalProjectItem);
+                    if (!typesOfTesting.contains(functionalProjectItem)) {
+                        typesOfTesting.add(functionalProjectItem);
+                    }
                     typeInput = reader.nextInt();
                     break;
                 case 2:
