@@ -25,14 +25,19 @@ public class DataCollector {
             String nameInput = reader.nextLine();
             System.out.print("Enter project time: ");
             Double timeInput = Double.parseDouble(reader.nextLine()); // with nextDouble scanner somehow grabs space as input for second project,
-                                                                      // so we will user Double.parseDouble
+                                                                      // so we will user Double.parseDouble. Maybe it is worth to add try / catch block here
             Project project = new Project(nameInput, timeInput);
             project.setTypesOfTesting();
+            project.setDevices();
+            project.setBuilds();
+
             projectsList.add(project);
         }
         // temp test code
         System.out.println(projectsList.get(0).getTypesOfTesting());
-        System.out.println(projectsList.get(1).getTypesOfTesting());
+        System.out.println(projectsList.get(0).getDevices());
+        System.out.println(projectsList.get(0).getBuilds());
+
     }
 
 

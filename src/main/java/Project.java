@@ -75,9 +75,43 @@ public class Project {
         }
     }
 
+    public void setDevices() {
+        System.out.println("Enter devices or 0 to exit...");
+        while (true) {
+            String input = reader.nextLine();
+            if (input.equals("0")) {
+                break;
+            }
+            devices.add(input); // issue similar to what happened with nextDouble in DataCollector
+            devices.remove(""); // https://stackoverflow.com/questions/13102045/scanner-is-skipping-nextline-after-using-next-or-nextfoo
+        }
+    }
+
+    public void setBuilds() {
+        System.out.println("Enter builds or 0 to exit...");
+        while (true) {
+            String input = reader.nextLine();
+            if (input.equals("0")) {
+                break;
+            }
+            builds.add(input);
+            builds.remove(""); // same issue that above
+        }
+    }
+
     public ArrayList<String> getTypesOfTesting() {
         return typesOfTesting;
     }
+
+    public ArrayList<String> getDevices() {
+        return devices;
+    }
+
+    public ArrayList<String> getBuilds() {
+        return builds;
+    }
+
+
 
 }
 
