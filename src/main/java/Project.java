@@ -1,61 +1,25 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class DataCollector {
+public class Project {
 
-    double totalWorked;
-    int totalProjects;
-    ArrayList<String> projectNames = new ArrayList<>();
-    ArrayList<Double> projectTimes = new ArrayList<>();
+    private Scanner reader = new Scanner(System.in);
+    private String projectName;
+    private Double projectTime;
 
+    ArrayList<String> typesOfTesting = new ArrayList<>();
+    ArrayList<String> devices = new ArrayList<>();
+    ArrayList<String> builds = new ArrayList<>();
+    ArrayList<String> bugsCreated = new ArrayList<>();
+    ArrayList<String> bugsReopened = new ArrayList<>();
+    ArrayList<String> bugsClosed = new ArrayList<>();
 
-    public void collectData() {
-        setHoursWorked();
-        setTotalProjectToday();
-        Scanner reader = new Scanner(System.in);
-
-        for (int i = 0; i < totalProjects; i++) {
-
-            String nameInput = reader.nextLine();
-            Double timeInput = reader.nextDouble();
-
-            Project project = new Project(nameInput, timeInput);
-
-
-        }
-
+    public Project(String name, Double time) {
+        this.projectName = name;
+        this.projectTime = time;
     }
 
-    private void setHoursWorked() {
-        System.out.print("Enter total hours worked: ");
-        Scanner reader = new Scanner(System.in);
-        totalWorked = reader.nextDouble();
-    }
-
-    private void setTotalProjectToday() {
-        System.out.print("Enter how much projects: ");
-        Scanner reader = new Scanner(System.in);
-        totalProjects = reader.nextInt();
-    }
-
-//    private void setGeneralProjectsData() {
-//        int i = 0;
-//        while (i < totalProjects) {
-//            System.out.print("Enter project name: ");
-//            Scanner reader = new Scanner(System.in);
-//            projectNames.add(reader.nextLine());
-//            System.out.print("Enter project time: ");
-//            projectTimes.add(reader.nextDouble());
-//            i++;
-//        }
-//    }
-
-    private void setDetailedProjectsData(String name, double time) {
-        Scanner reader = new Scanner(System.in);
-        ArrayList<String> typesOfTesting = new ArrayList<>();
-        ArrayList<String> devices = new ArrayList<>();
-        ArrayList<String> builds = new ArrayList<>();
-
+    public void setTypesOfTesting() {
         System.out.println("Select what kind on testing \n" +
                 "1 for Functional\n" +
                 "2 for Regression\n" +
@@ -68,21 +32,21 @@ public class DataCollector {
         while (typeInput != 0) {
             switch (typeInput) {
                 case 1:
-                    String functionalProjectItem = "- Функциональное тестирование приложения " + name;
+                    String functionalProjectItem = "- Функциональное тестирование приложения " + projectName;
                     if (!typesOfTesting.contains(functionalProjectItem)) {
                         typesOfTesting.add(functionalProjectItem);
                     }
                     typeInput = reader.nextInt();
                     break;
                 case 2:
-                    String regressionProjectItem = "- Регрессионное тестирование приложения " + name;
+                    String regressionProjectItem = "- Регрессионное тестирование приложения " + projectName;
                     if (!typesOfTesting.contains(regressionProjectItem)) {
                         typesOfTesting.add(regressionProjectItem);
                     }
                     typeInput = reader.nextInt();
                     break;
                 case 3:
-                    String byChecklist = "- Тестирование по чек-листу приложения " + name;
+                    String byChecklist = "- Тестирование по чек-листу приложения " + projectName;
                     if (!typesOfTesting.contains(byChecklist)) {
                         typesOfTesting.add(byChecklist);
                     }
@@ -109,5 +73,7 @@ public class DataCollector {
             }
         }
     }
+
 }
+
 

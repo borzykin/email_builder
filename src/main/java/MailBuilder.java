@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 //StringBuilder can't be inherited though
-public class MailBuilder extends Builder{
+public class MailBuilder {
 
     public StringBuilder emailBuilder() {
         double totalWorked = getHoursWorked();
