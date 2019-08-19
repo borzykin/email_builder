@@ -7,7 +7,15 @@ public class DataCollector {
     int totalProjects;
     ArrayList<String> projectNames = new ArrayList<>();
     ArrayList<Double> projectTimes = new ArrayList<>();
+<<<<<<< HEAD
 
+=======
+    ArrayList<ArrayList<String>> projects = new ArrayList<>();
+    ArrayList<String> bugsCreated = new ArrayList<>();
+    ArrayList<String> bugsReopened = new ArrayList<>();
+    ArrayList<String> bugsClosed = new ArrayList<>();
+    ArrayList<Integer> totalProjectElements = new ArrayList<>();
+>>>>>>> experiments_with_datacolletion
 
     public void collectData() {
         setHoursWorked();
@@ -15,6 +23,7 @@ public class DataCollector {
         Scanner reader = new Scanner(System.in);
 
         for (int i = 0; i < totalProjects; i++) {
+<<<<<<< HEAD
 
             String nameInput = reader.nextLine();
             Double timeInput = reader.nextDouble();
@@ -24,6 +33,11 @@ public class DataCollector {
 
         }
 
+=======
+            System.out.println("Enter data about project " + (i + 1) + "...");
+            setDetailedProjectsData(projectNames.get(i), projectTimes.get(i));
+        }
+>>>>>>> experiments_with_datacolletion
     }
 
     private void setHoursWorked() {
@@ -108,6 +122,65 @@ public class DataCollector {
                     break;
             }
         }
+<<<<<<< HEAD
+=======
+
+        System.out.println("Enter devices or 0 to exit...");
+        while (true) {
+            String input = reader.nextLine();
+            if (input.equals("0")) {
+                break;
+            }
+            devices.add(input);
+            // idk code adds empty space to list, but we don't need it
+            devices.remove("");
+        }
+
+        System.out.println("Enter builds or 0 to exit...");
+        while (true) {
+            String input = reader.nextLine();
+            if (input.equals("0")) {
+                break;
+            }
+            builds.add(input);
+            // same as devices
+            builds.remove("");
+        }
+
+        System.out.println("Enter bugs CREATED or 0 to exit...");
+        while (true) {
+            String input = reader.nextLine();
+            if (input.equals("0")) {
+                break;
+            }
+            bugsCreated.add(input);
+        }
+
+        System.out.println("Enter bugs REOPENED or 0 to exit...");
+        while (true) {
+            String input = reader.nextLine();
+            if (input.equals("0")) {
+                break;
+            }
+            bugsReopened.add(input);
+        }
+
+        System.out.println("Enter bugs CLOSED or 0 to exit...");
+        while (true) {
+            String input = reader.nextLine();
+            if (input.equals("0")) {
+                break;
+            }
+            bugsClosed.add(input);
+        }
+
+        projects.add(typesOfTesting);
+        projects.add(devices);
+        projects.add(builds);
+        projects.add(bugsCreated);
+        projects.add(bugsReopened);
+        projects.add(bugsClosed);
+>>>>>>> experiments_with_datacolletion
     }
 }
 
