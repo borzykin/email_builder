@@ -13,23 +13,28 @@ public class DataCollector {
     ArrayList<String> bugsClosed = new ArrayList<>();
     ArrayList<Integer> totalProjectElements = new ArrayList<>();
 
+    ArrayList<Project> projectsList = new ArrayList<>();
+
     public void collectData() {
         setHoursWorked();
         setTotalProjectToday();
         Scanner reader = new Scanner(System.in);
 
         for (int i = 0; i < totalProjects; i++) {
-            System.out.println("Enter project name: ");
+            System.out.print("Enter project name: ");
             String nameInput = reader.nextLine();
-            System.out.println("Enter project time: ");
+            System.out.print("Enter project time: ");
             Double timeInput = reader.nextDouble();
 
             Project project = new Project(nameInput, timeInput);
-
             project.setTypesOfTesting();
-            System.out.println(project.getTypesOfTesting());
+
+            projectsList.add(project);
 
         }
+
+        System.out.println(projectsList.get(0).getTypesOfTesting());
+
     }
 
 
