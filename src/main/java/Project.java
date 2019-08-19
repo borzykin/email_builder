@@ -8,11 +8,11 @@ public class Project {
     private Double projectTime;
 
     private ArrayList<String> typesOfTesting = new ArrayList<>();
-    ArrayList<String> devices = new ArrayList<>();
-    ArrayList<String> builds = new ArrayList<>();
-    ArrayList<String> bugsCreated = new ArrayList<>();
-    ArrayList<String> bugsReopened = new ArrayList<>();
-    ArrayList<String> bugsClosed = new ArrayList<>();
+    private ArrayList<String> devices = new ArrayList<>();
+    private ArrayList<String> builds = new ArrayList<>();
+    private ArrayList<String> bugsCreated = new ArrayList<>();
+    private ArrayList<String> bugsReopened = new ArrayList<>();
+    private ArrayList<String> bugsClosed = new ArrayList<>();
 
     public Project(String name, Double time) {
         this.projectName = name;
@@ -99,6 +99,43 @@ public class Project {
         }
     }
 
+    public void setBugsCreated() {
+        System.out.println("Enter bugs CREATED or 0 to exit...");
+        while (true) {
+            String input = reader.nextLine();
+            if (input.equals("0")) {
+                break;
+            }
+            bugsCreated.add(input);
+            bugsCreated.remove("");
+        }
+    }
+
+    public void setBugsReopened() {
+        System.out.println("Enter bugs REOPENED or 0 to exit...");
+        while (true) {
+            String input = reader.nextLine();
+            if (input.equals("0")) {
+                break;
+            }
+            bugsReopened.add(input);
+            bugsReopened.remove("");
+        }
+    }
+
+    public void setBugsClosed() {
+        System.out.println("Enter bugs CLOSED or 0 to exit...");
+        while (true) {
+            String input = reader.nextLine();
+            if (input.equals("0")) {
+                break;
+            }
+            bugsClosed.add(input);
+            bugsClosed.remove("");
+        }
+    }
+
+
     public ArrayList<String> getTypesOfTesting() {
         return typesOfTesting;
     }
@@ -111,6 +148,17 @@ public class Project {
         return builds;
     }
 
+    public ArrayList<String> getBugsCreated() {
+        return bugsCreated;
+    }
+
+    public ArrayList<String> getBugsReopened() {
+        return bugsReopened;
+    }
+
+    public ArrayList<String> getBugsClosed() {
+        return bugsClosed;
+    }
 
 
 }
