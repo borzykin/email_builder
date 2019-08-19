@@ -13,11 +13,21 @@ public class DataCollector {
 
         for (int i = 0; i < totalProjects; i++) {
             Scanner reader = new Scanner(System.in);
+            Double timeInput;
+
             System.out.print("Enter project name: ");
             String nameInput = reader.nextLine();
             System.out.print("Enter project time: ");
-            Double timeInput = Double.parseDouble(reader.nextLine()); // with nextDouble scanner somehow grabs space as input for second project,
+            try{
+            timeInput = Double.parseDouble(reader.nextLine());} // with nextDouble scanner somehow grabs space as input for second project,
                                                                       // so we will user Double.parseDouble. Maybe it is worth to add try / catch block here
+            catch (NumberFormatException e)
+            {
+                System.out.println("Wrong number Format! Try again!");
+                e.printStackTrace();
+                timeInput = 0.0;
+                collectData();
+            }
             Project project = new Project(nameInput, timeInput);
             project.setTypesOfTesting();
             project.setDevices();
