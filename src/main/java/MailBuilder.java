@@ -76,17 +76,6 @@ public class MailBuilder {
             hoursEnding = " часов";
         }
 
-        StringBuilder projectHeader = new StringBuilder();
-        projectHeader.append(name).append(" - ").append(time).append(hoursEnding).append("\n");
-
-        System.out.println("Select what kind on testing \n" +
-                "1 for Functional\n" +
-                "2 for Regression\n" +
-                "3 for By Checklist\n" +
-                "4 for Communication\n" +
-                "5 for Writing test-cases\n" +
-                "or 0 to exit...");
-
         int typeInput = reader.nextInt();
         while (typeInput != 0) {
             switch (typeInput) {
@@ -234,7 +223,7 @@ public class MailBuilder {
             }
         }
 
-        return projectHeader.append("\n").append(typesOfTestingBlock).append("\n").append(buildsBlock).append(devicesBlock).append(createdBlock)
+        return typesOfTestingBlock.append("\n").append(buildsBlock).append(devicesBlock).append(createdBlock)
                 .append(reopenedBlock).append(closedBlock);
     }
 

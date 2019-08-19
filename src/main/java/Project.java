@@ -135,6 +135,18 @@ public class Project {
         }
     }
 
+    public String getProjectHeader() {
+        String hoursEnding;
+        if (projectTime <= 1) {
+            hoursEnding = " час";
+        } else if (projectTime > 1 && projectTime < 5) {
+            hoursEnding = " часa";
+        } else {
+            hoursEnding = " часов";
+        }
+        return projectName + " - " + projectTime + hoursEnding + "\n";
+    }
+
 
     public ArrayList<String> getTypesOfTesting() {
         return typesOfTesting;

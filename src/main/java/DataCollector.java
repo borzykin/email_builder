@@ -30,6 +30,7 @@ public class DataCollector {
         }
 
         // temp test code for 1 project added
+        System.out.println(projectsList.get(0).getProjectHeader());
         System.out.println(projectsList.get(0).getTypesOfTesting());
         System.out.println(projectsList.get(0).getDevices());
         System.out.println(projectsList.get(0).getBuilds());
