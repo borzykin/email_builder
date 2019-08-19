@@ -7,15 +7,11 @@ public class DataCollector {
     int totalProjects;
     ArrayList<String> projectNames = new ArrayList<>();
     ArrayList<Double> projectTimes = new ArrayList<>();
-<<<<<<< HEAD
-
-=======
     ArrayList<ArrayList<String>> projects = new ArrayList<>();
     ArrayList<String> bugsCreated = new ArrayList<>();
     ArrayList<String> bugsReopened = new ArrayList<>();
     ArrayList<String> bugsClosed = new ArrayList<>();
     ArrayList<Integer> totalProjectElements = new ArrayList<>();
->>>>>>> experiments_with_datacolletion
 
     public void collectData() {
         setHoursWorked();
@@ -23,22 +19,19 @@ public class DataCollector {
         Scanner reader = new Scanner(System.in);
 
         for (int i = 0; i < totalProjects; i++) {
-<<<<<<< HEAD
-
+            System.out.println("Enter project name: ");
             String nameInput = reader.nextLine();
+            System.out.println("Enter project time: ");
             Double timeInput = reader.nextDouble();
 
             Project project = new Project(nameInput, timeInput);
 
+            project.setTypesOfTesting();
+            System.out.println(project.getTypesOfTesting());
 
         }
-
-=======
-            System.out.println("Enter data about project " + (i + 1) + "...");
-            setDetailedProjectsData(projectNames.get(i), projectTimes.get(i));
-        }
->>>>>>> experiments_with_datacolletion
     }
+
 
     private void setHoursWorked() {
         System.out.print("Enter total hours worked: ");
@@ -122,8 +115,6 @@ public class DataCollector {
                     break;
             }
         }
-<<<<<<< HEAD
-=======
 
         System.out.println("Enter devices or 0 to exit...");
         while (true) {
@@ -180,7 +171,6 @@ public class DataCollector {
         projects.add(bugsCreated);
         projects.add(bugsReopened);
         projects.add(bugsClosed);
->>>>>>> experiments_with_datacolletion
     }
 }
 

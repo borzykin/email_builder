@@ -20,6 +20,9 @@ public class Project {
     }
 
     public void setTypesOfTesting() {
+
+        System.out.println("Enter data about project " + projectName + "...");
+
         System.out.println("Select what kind on testing \n" +
                 "1 for Functional\n" +
                 "2 for Regression\n" +
@@ -72,6 +75,10 @@ public class Project {
                     break;
             }
         }
+    }
+
+    public ArrayList<String> getTypesOfTesting() {
+        return typesOfTesting;
     }
 
 }
