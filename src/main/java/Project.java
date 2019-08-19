@@ -7,7 +7,7 @@ public class Project {
     private String projectName;
     private Double projectTime;
 
-    ArrayList<String> typesOfTesting = new ArrayList<>();
+    private ArrayList<String> typesOfTesting = new ArrayList<>();
     ArrayList<String> devices = new ArrayList<>();
     ArrayList<String> builds = new ArrayList<>();
     ArrayList<String> bugsCreated = new ArrayList<>();
@@ -20,9 +20,7 @@ public class Project {
     }
 
     public void setTypesOfTesting() {
-
         System.out.println("Enter data about project " + projectName + "...");
-
         System.out.println("Select what kind on testing \n" +
                 "1 for Functional\n" +
                 "2 for Regression\n" +
@@ -70,7 +68,7 @@ public class Project {
                     typeInput = reader.nextInt();
                     break;
                 default:
-                    System.out.println("Invalid code. Please choose between 0,1,2");
+                    System.out.println("Invalid code. Please choose between 1 - 5 or 0 to exit");
                     typeInput = reader.nextInt();
                     break;
             }

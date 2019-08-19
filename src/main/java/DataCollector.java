@@ -18,23 +18,21 @@ public class DataCollector {
     public void collectData() {
         setHoursWorked();
         setTotalProjectToday();
-        Scanner reader = new Scanner(System.in);
 
         for (int i = 0; i < totalProjects; i++) {
+            Scanner reader = new Scanner(System.in);
             System.out.print("Enter project name: ");
             String nameInput = reader.nextLine();
             System.out.print("Enter project time: ");
-            Double timeInput = reader.nextDouble();
-
+            Double timeInput = Double.parseDouble(reader.nextLine()); // with nextDouble scanner somehow grabs space as input for second project,
+                                                                      // so we will user Double.parseDouble
             Project project = new Project(nameInput, timeInput);
             project.setTypesOfTesting();
-
             projectsList.add(project);
-
         }
-
+        // temp test code
         System.out.println(projectsList.get(0).getTypesOfTesting());
-
+        System.out.println(projectsList.get(1).getTypesOfTesting());
     }
 
 
