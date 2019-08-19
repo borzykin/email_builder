@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 //StringBuilder can't be inherited though
-public class MailBuilder extends Builder{
+public class MailBuilder {
 
     public StringBuilder emailBuilder() {
         double totalWorked = getHoursWorked();
@@ -40,7 +40,7 @@ public class MailBuilder extends Builder{
     }
 
     private int getTotalProjectToday() {
-        System.out.print("Enter how much projects: ");
+        System.out.print("Enter how much projectNames: ");
         Scanner reader = new Scanner(System.in);
         return reader.nextInt();
     }
@@ -75,17 +75,6 @@ public class MailBuilder extends Builder{
         } else {
             hoursEnding = " часов";
         }
-
-        StringBuilder projectHeader = new StringBuilder();
-        projectHeader.append(name).append(" - ").append(time).append(hoursEnding).append("\n");
-
-        System.out.println("Select what kind on testing \n" +
-                "1 for Functional\n" +
-                "2 for Regression\n" +
-                "3 for By Checklist\n" +
-                "4 for Communication\n" +
-                "5 for Writing test-cases\n" +
-                "or 0 to exit...");
 
         int typeInput = reader.nextInt();
         while (typeInput != 0) {
@@ -234,7 +223,7 @@ public class MailBuilder extends Builder{
             }
         }
 
-        return projectHeader.append("\n").append(typesOfTestingBlock).append("\n").append(buildsBlock).append(devicesBlock).append(createdBlock)
+        return typesOfTestingBlock.append("\n").append(buildsBlock).append(devicesBlock).append(createdBlock)
                 .append(reopenedBlock).append(closedBlock);
     }
 
