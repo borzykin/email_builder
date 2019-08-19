@@ -28,7 +28,7 @@ public class Project {
                 "4 for Communication\n" +
                 "5 for Writing test-cases\n" +
                 "or 0 to exit...");
-
+//Proposition: All input methods move to DataCollector class
         int typeInput = reader.nextInt();
         while (typeInput != 0) {
             switch (typeInput) {
