@@ -21,6 +21,10 @@ public class Project {
         stringMap.put("bugsClosed", new ArrayList<>());
     }
 
+    public String toString() {
+    return getProjectHeader() + "with total bugs: " + (getBugsClosed().size() + getBugsCreated().size() + getBugsReopened().size());
+    }
+
     public void setTypesOfTesting() {
         System.out.println("Enter data about project " + projectName + "...");
         System.out.println("Select what kind on testing \n" +
@@ -150,7 +154,6 @@ public class Project {
         }
         return projectName + " - " + projectTime + hoursEnding + "\n";
     }
-
 
     public ArrayList<String> getTypesOfTesting() {
         return stringMap.get("typesOfTesting");

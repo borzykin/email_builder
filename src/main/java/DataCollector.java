@@ -13,20 +13,17 @@ public class DataCollector {
 
         for (int i = 0; i < totalProjects; i++) {
             Scanner reader = new Scanner(System.in);
-            Double timeInput;
+            double timeInput;
 
             System.out.print("Enter project name: ");
             String nameInput = reader.nextLine();
             System.out.print("Enter project time: ");
-            try{
-            timeInput = Double.parseDouble(reader.nextLine());} // with nextDouble scanner somehow grabs space as input for second project,
-                                                                      // so we will user Double.parseDouble. Maybe it is worth to add try / catch block here
-            catch (NumberFormatException e)
-            {
+            try {
+                timeInput = Double.parseDouble(reader.nextLine());
+            } catch (NumberFormatException e) {
                 System.out.println("Wrong number Format! Try again!");
                 e.printStackTrace();
                 timeInput = 0.0;
-//                collectData();   // it will restart process but will add data as second project, let's keep 0 as input in case of error for now
             }
             Project project = new Project(nameInput, timeInput);
             project.setTypesOfTesting();
@@ -38,17 +35,7 @@ public class DataCollector {
 
             projectsList.add(project);
         }
-
-        // temp test code for 1 project added
-        System.out.println(projectsList.get(0).getProjectHeader());
-        System.out.println(projectsList.get(0).getTypesOfTesting());
-        System.out.println(projectsList.get(0).getDevices());
-        System.out.println(projectsList.get(0).getBuilds());
-        System.out.println(projectsList.get(0).getBugsCreated());
-        System.out.println(projectsList.get(0).getBugsReopened());
-        System.out.println(projectsList.get(0).getBugsClosed());
     }
-
 
     private void setHoursWorked() {
         System.out.print("Enter total hours worked: ");
@@ -60,6 +47,14 @@ public class DataCollector {
         System.out.print("Enter how much projects: ");
         Scanner reader = new Scanner(System.in);
         totalProjects = reader.nextInt();
+    }
+
+    public Project getFullProject(int index) {
+        return projectsList.get(index);
+    }
+
+    public int getProjectsNumber() {
+        return projectsList.size();
     }
 }
 
