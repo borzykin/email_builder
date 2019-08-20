@@ -32,7 +32,7 @@ public class Project {
                 "or 0 to exit...");
 //Proposition: All input methods move to DataCollector class
         int typeInput = reader.nextInt();
-        while(true) {
+        while(typeInput != 0) {
             switch (typeInput) {
                 case 0:
                     break;
@@ -42,36 +42,40 @@ public class Project {
                     //Some add method looks pretty weird though
                     if (!stringMap.get("typesOfTesting").contains(functionalProjectItem))
                         stringMap.get("typesOfTesting").add(functionalProjectItem);
+                    typeInput = reader.nextInt();
                     break;
                 case 2:
                     String regressionProjectItem = "- Регрессионное тестирование приложения " + projectName;
                     if (!stringMap.get("typesOfTesting").contains(regressionProjectItem)) {
                         stringMap.get("typesOfTesting").add(regressionProjectItem);
                     }
+                    typeInput = reader.nextInt();
                     break;
                 case 3:
                     String byChecklist = "- Тестирование по чек-листу приложения " + projectName;
                     if (!stringMap.get("typesOfTesting").contains(byChecklist)) {
                         stringMap.get("typesOfTesting").add(byChecklist);
                     }
+                    typeInput = reader.nextInt();
                     break;
                 case 4:
                     String communication = "- Коммуникация с заказчиком";
                     if (!stringMap.get("typesOfTesting").contains(communication)) {
                         stringMap.get("typesOfTesting").add(communication);
                     }
+                    typeInput = reader.nextInt();
                     break;
                 case 5:
                     String testCases = "- Написание тест-кейсов";
                     if (!stringMap.get("typesOfTesting").contains(testCases)) {
                         stringMap.get("typesOfTesting").add(testCases);
                     }
+                    typeInput = reader.nextInt();
                     break;
                 default:
                     System.out.println("Invalid code. Please choose between 1 - 5 or 0 to exit");
                     break;
             }
-            break;
         }
     }
 
