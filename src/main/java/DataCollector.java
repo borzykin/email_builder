@@ -26,7 +26,7 @@ public class DataCollector {
                 System.out.println("Wrong number Format! Try again!");
                 e.printStackTrace();
                 timeInput = 0.0;
-                collectData();
+//                collectData();   // it will restart process but will add data as second project, let's keep 0 as input in case of error for now
             }
             Project project = new Project(nameInput, timeInput);
             project.setTypesOfTesting();
