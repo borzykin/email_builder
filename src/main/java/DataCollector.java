@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 public class DataCollector {
 
-    double totalWorked;
-    int totalProjects;
-    ArrayList<Project> projectsList = new ArrayList<>();
+    private double totalWorked;
+    private int totalProjects;
+    private ArrayList<Project> projectsList = new ArrayList<>();
 
     public void collectData() {
         setHoursWorked();

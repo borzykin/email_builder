@@ -5,10 +5,8 @@ public class EmailBuilder {
         DataCollector data = new DataCollector();
         data.collectData();
 
-        Project project = data.getFullProject(0);
+        // Probably it is worth adding code that will build email via StringBuilders here
 
-        WebInterface web = new WebInterface();
-        web.loginToGmailAndClickCompose(project.toString());
 
     }
 
