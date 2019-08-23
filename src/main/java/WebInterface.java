@@ -16,7 +16,7 @@ public class WebInterface
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    public void loginToGmailAndClickCompose(String input) {
+    public void loginToGmailAndClickCompose() {
         WebDriver driver = this.webDriver;
         driver.manage().window().maximize();
         driver.get("https://gmail.com/");
@@ -25,5 +25,15 @@ public class WebInterface
         driver.findElement(By.name("password")).sendKeys("pass");
         driver.findElement(By.id("passwordNext")).sendKeys(Keys.ENTER);
         driver.findElement(By.xpath("//div[contains(text(),'Написать')]")).click();
+    }
+
+    public void enterDataToEmail(StringBuilder input) {
+        // to do input via selenium
+        System.out.println(input); // temp
+    }
+
+    public void enterDataToEmailBold(StringBuilder input) {
+        // to do input bold via selenium
+        System.out.println(input); // temp
     }
 }

@@ -21,8 +21,8 @@ public class DataCollector {
             try {
                 timeInput = Double.parseDouble(reader.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Wrong number Format! Try again!");
-                e.printStackTrace();
+                System.out.println("Wrong number Format!");
+
                 timeInput = 0.0;
             }
             Project project = new Project(nameInput, timeInput);
@@ -49,12 +49,16 @@ public class DataCollector {
         totalProjects = reader.nextInt();
     }
 
-    public Project getFullProject(int index) {
-        return projectsList.get(index);
+    public double getTotalWorked() {
+        return totalWorked;
     }
 
-    public int getProjectsNumber() {
-        return projectsList.size();
+    public int getTotalProjects() {
+        return totalProjects;
+    }
+
+    public Project getFullProject(int index) {
+        return projectsList.get(index);
     }
 }
 
