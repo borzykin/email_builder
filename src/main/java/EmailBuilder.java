@@ -7,6 +7,8 @@ public class EmailBuilder {
 
         // Time to enter data to email via WebInterface
         WebInterface web = new WebInterface();
+        web.loginToGmailAndClickCompose();
+        web.enterEmailSubject();
         web.enterDataToEmail(buildEmailHeader(data));
 
         // Enter all project header as bold and body as regular text
@@ -27,7 +29,7 @@ public class EmailBuilder {
 
     private static StringBuilder buildProjectHeader(Project p) {
         StringBuilder header = new StringBuilder();
-        header.append(p.getProjectHeader());
+        header.append("\n").append(p.getProjectHeader()).append("\n");
         return header;
     }
 
@@ -110,6 +112,6 @@ public class EmailBuilder {
 
     private static StringBuilder buildFooter() {
         StringBuilder footer = new StringBuilder();
-        return footer.append("Задачи планируемые на завтра - нет" + "\n" + "\n" + "Текущие проблемы - нет");
+        return footer.append("\nЗадачи планируемые на завтра - нет" + "\n" + "\n" + "Текущие проблемы - нет");
     }
 }
