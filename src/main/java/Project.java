@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Project {
@@ -6,17 +7,22 @@ public class Project {
     private Scanner reader = new Scanner(System.in);
     private String projectName;
     private Double projectTime;
-
-    private ArrayList<String> typesOfTesting = new ArrayList<>();
-    private ArrayList<String> devices = new ArrayList<>();
-    private ArrayList<String> builds = new ArrayList<>();
-    private ArrayList<String> bugsCreated = new ArrayList<>();
-    private ArrayList<String> bugsReopened = new ArrayList<>();
-    private ArrayList<String> bugsClosed = new ArrayList<>();
+    private HashMap<String, ArrayList<String>> stringMap = new HashMap<>();
 
     public Project(String name, Double time) {
         this.projectName = name;
         this.projectTime = time;
+        //stringMap keys init
+        stringMap.put("typesOfTesting", new ArrayList<>());
+        stringMap.put("builds", new ArrayList<>());
+        stringMap.put("devices", new ArrayList<>());
+        stringMap.put("bugsCreated", new ArrayList<>());
+        stringMap.put("bugsReopened", new ArrayList<>());
+        stringMap.put("bugsClosed", new ArrayList<>());
+    }
+
+    public String toString() {
+    return getProjectHeader() + "with total bugs: " + (getBugsClosed().size() + getBugsCreated().size() + getBugsReopened().size());
     }
 
     public void setTypesOfTesting() {
@@ -28,48 +34,50 @@ public class Project {
                 "4 for Communication\n" +
                 "5 for Writing test-cases\n" +
                 "or 0 to exit...");
-
+//Proposition: All input methods move to DataCollector class
         int typeInput = reader.nextInt();
-        while (typeInput != 0) {
+        while(typeInput != 0) {
             switch (typeInput) {
+                case 0:
+                    break;
                 case 1:
                     String functionalProjectItem = "- Функциональное тестирование приложения " + projectName;
-                    if (!typesOfTesting.contains(functionalProjectItem)) {
-                        typesOfTesting.add(functionalProjectItem);
-                    }
+                    //Insane but here it is! HashMap of ArrayList
+                    //Some add method looks pretty weird though
+                    if (!stringMap.get("typesOfTesting").contains(functionalProjectItem))
+                        stringMap.get("typesOfTesting").add(functionalProjectItem);
                     typeInput = reader.nextInt();
                     break;
                 case 2:
                     String regressionProjectItem = "- Регрессионное тестирование приложения " + projectName;
-                    if (!typesOfTesting.contains(regressionProjectItem)) {
-                        typesOfTesting.add(regressionProjectItem);
+                    if (!stringMap.get("typesOfTesting").contains(regressionProjectItem)) {
+                        stringMap.get("typesOfTesting").add(regressionProjectItem);
                     }
                     typeInput = reader.nextInt();
                     break;
                 case 3:
                     String byChecklist = "- Тестирование по чек-листу приложения " + projectName;
-                    if (!typesOfTesting.contains(byChecklist)) {
-                        typesOfTesting.add(byChecklist);
+                    if (!stringMap.get("typesOfTesting").contains(byChecklist)) {
+                        stringMap.get("typesOfTesting").add(byChecklist);
                     }
                     typeInput = reader.nextInt();
                     break;
                 case 4:
                     String communication = "- Коммуникация с заказчиком";
-                    if (!typesOfTesting.contains(communication)) {
-                        typesOfTesting.add(communication);
+                    if (!stringMap.get("typesOfTesting").contains(communication)) {
+                        stringMap.get("typesOfTesting").add(communication);
                     }
                     typeInput = reader.nextInt();
                     break;
                 case 5:
                     String testCases = "- Написание тест-кейсов";
-                    if (!typesOfTesting.contains(testCases)) {
-                        typesOfTesting.add(testCases);
+                    if (!stringMap.get("typesOfTesting").contains(testCases)) {
+                        stringMap.get("typesOfTesting").add(testCases);
                     }
                     typeInput = reader.nextInt();
                     break;
                 default:
                     System.out.println("Invalid code. Please choose between 1 - 5 or 0 to exit");
-                    typeInput = reader.nextInt();
                     break;
             }
         }
@@ -82,8 +90,8 @@ public class Project {
             if (input.equals("0")) {
                 break;
             }
-            devices.add(input); // issue similar to what happened with nextDouble in DataCollector
-            devices.remove(""); // https://stackoverflow.com/questions/13102045/scanner-is-skipping-nextline-after-using-next-or-nextfoo
+            stringMap.get("devices").add(input); // issue similar to what happened with nextDouble in DataCollector
+            stringMap.get("devices").remove(""); // https://stackoverflow.com/questions/13102045/scanner-is-skipping-nextline-after-using-next-or-nextfoo
         }
     }
 
@@ -94,8 +102,8 @@ public class Project {
             if (input.equals("0")) {
                 break;
             }
-            builds.add(input);
-            builds.remove(""); // same issue that above
+            stringMap.get("builds").add(input);
+            stringMap.get("builds").remove(""); // same issue that above
         }
     }
 
@@ -106,8 +114,8 @@ public class Project {
             if (input.equals("0")) {
                 break;
             }
-            bugsCreated.add(input);
-            bugsCreated.remove("");
+            stringMap.get("bugsCreated").add(input);
+            stringMap.get("bugsCreated").remove("");
         }
     }
 
@@ -118,8 +126,8 @@ public class Project {
             if (input.equals("0")) {
                 break;
             }
-            bugsReopened.add(input);
-            bugsReopened.remove("");
+            stringMap.get("bugsReopened").add(input);
+            stringMap.get("bugsReopened").remove("");
         }
     }
 
@@ -130,8 +138,8 @@ public class Project {
             if (input.equals("0")) {
                 break;
             }
-            bugsClosed.add(input);
-            bugsClosed.remove("");
+            stringMap.get("bugsClosed").add(input);
+            stringMap.get("bugsClosed").remove("");
         }
     }
 
@@ -147,29 +155,28 @@ public class Project {
         return projectName + " - " + projectTime + hoursEnding + "\n";
     }
 
-
     public ArrayList<String> getTypesOfTesting() {
-        return typesOfTesting;
+        return stringMap.get("typesOfTesting");
     }
 
     public ArrayList<String> getDevices() {
-        return devices;
+        return stringMap.get("devices");
     }
 
     public ArrayList<String> getBuilds() {
-        return builds;
+        return stringMap.get("builds");
     }
 
     public ArrayList<String> getBugsCreated() {
-        return bugsCreated;
+        return stringMap.get("bugsCreated");
     }
 
     public ArrayList<String> getBugsReopened() {
-        return bugsReopened;
+        return stringMap.get("bugsReopened");
     }
 
     public ArrayList<String> getBugsClosed() {
-        return bugsClosed;
+        return stringMap.get("bugsClosed");
     }
 
 
