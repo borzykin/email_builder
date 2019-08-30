@@ -17,6 +17,8 @@ public class WebInterface
 {
     private ChromeDriver webDriver;
     private WebDriverWait wait;
+    private WebElement boldButton;
+
     public WebInterface()
     {
         WebDriverManager.chromedriver().setup();
@@ -29,6 +31,7 @@ public class WebInterface
         WebDriver driver = this.webDriver;
         driver.manage().window().maximize();
 
+
         driver.get("https://gmail.com/");
         driver.findElement(By.id("identifierId")).sendKeys("qadecf2");
         driver.findElement(By.id("identifierNext")).click();
@@ -39,6 +42,18 @@ public class WebInterface
 
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Написать')]")));
         driver.findElement(By.xpath("//div[contains(text(),'Написать')]")).click();
+
+        //Open formatting toolbar
+        WebElement formatButton = webDriver.findElementById(":qj");
+        WebElement toolbar = webDriver.findElementById(":rg");
+        //Google remembers whether the button was pressed. That's why we check the toolbar presence first
+        if (!toolbar.isDisplayed())
+        {
+            formatButton.click();
+        }
+        //Wait until toolbar with formatting is opened
+        wait.until(ExpectedConditions.elementToBeClickable(toolbar));
+        boldButton = webDriver.findElementById(":ru");
     }
 
     public void enterEmailSubject() {
@@ -55,10 +70,15 @@ public class WebInterface
         bodyInput.sendKeys(input);
     }
 
+    //Ready for usage!
     public void enterDataToEmailBold(StringBuilder input) {
-        // todo bold selector
+        boldButton.click();
+        //Wait until button is really pressed :)
+        wait.until(ExpectedConditions.attributeToBe(boldButton, "aria-pressed", "true"));
         WebElement bodyInput = webDriver.findElementByXPath("//*[@id=\":q7\"]");
         wait.until(ExpectedConditions.elementToBeClickable(bodyInput));
         bodyInput.sendKeys(input);
+        //Disable bold
+        boldButton.click();
     }
 }
