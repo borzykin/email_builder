@@ -4,8 +4,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -33,11 +31,11 @@ public class WebInterface
 
 
         driver.get("https://gmail.com/");
-        driver.findElement(By.id("identifierId")).sendKeys("qadecf2");
+        driver.findElement(By.id("identifierId")).sendKeys("gmail login");
         driver.findElement(By.id("identifierNext")).click();
 
         wait.until(ExpectedConditions.elementToBeClickable(By.name("password")));
-        driver.findElement(By.name("password")).sendKeys("Qazwsx321");
+        driver.findElement(By.name("password")).sendKeys("password");
         driver.findElement(By.id("passwordNext")).sendKeys(Keys.ENTER);
 
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[contains(text(),'Написать')]")));
