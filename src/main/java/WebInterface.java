@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
@@ -55,7 +57,7 @@ public class WebInterface
     }
 
     public void enterEmailSubject() {
-        String timeStamp = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
+        String timeStamp = ZonedDateTime.now().format(DateTimeFormatter.ofPattern("dd.MM.uuuu"));
         WebElement subjectInput = webDriver.findElementByName("subjectbox");
         wait.until(ExpectedConditions.elementToBeClickable(subjectInput));
         subjectInput.clear();
